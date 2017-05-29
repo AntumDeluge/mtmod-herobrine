@@ -53,7 +53,7 @@ function player_update_visuals(self)
 
 	player_anim = 0 -- Animation will be set further below immediately
 	--player_sneak[name] = false
-	prop = {
+	local prop = {
 		mesh = default_model,
 		textures = available_npc_textures["texture_"..math.random(1,4)],
 		visual_size = {x=1, y=1},
@@ -61,7 +61,7 @@ function player_update_visuals(self)
 	self.object:set_properties(prop)
 end
 
-NPC_ENTITY = {
+local NPC_ENTITY = {
 	physical = true,
 	collisionbox = {-0.3,-1.0,-0.3, 0.3,0.8,0.3},
 	visual = "mesh",
@@ -148,8 +148,8 @@ NPC_ENTITY.on_step = function(self, dtime)
 		for  _,object in ipairs(minetest.env:get_objects_inside_radius(self.object:getpos(), 3)) do
 			if object:is_player() then
 				self.yawwer = false
-				NPC = self.object:getpos()
-				PLAYER = object:getpos()
+				local NPC = self.object:getpos()
+				local PLAYER = object:getpos()
 				self.vec = {x=PLAYER.x-NPC.x, y=PLAYER.y-NPC.y, z=PLAYER.z-NPC.z}
 				self.yaw = math.atan(self.vec.z/self.vec.x)+math.pi^2
 				if PLAYER.x > NPC.x then
