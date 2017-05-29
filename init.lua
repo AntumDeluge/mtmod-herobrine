@@ -51,7 +51,6 @@ local ANIM_MINE = 6
 function player_update_visuals(self)
 	--local name = get_player_name()
 
-	local visual = default_model
 	player_anim = 0 -- Animation will be set further below immediately
 	--player_sneak[name] = false
 	prop = {
@@ -83,7 +82,7 @@ NPC_ENTITY = {
 
 NPC_ENTITY.on_activate = function(self)
 	player_update_visuals(self)
-	self.anim = player_get_animations(visual)
+	self.anim = player_get_animations(default_model)
 	self.object:set_animation({x=self.anim.stand_START,y=self.anim.stand_END}, animation_speed_mod, animation_blend)
 	self.player_anim = ANIM_STAND
 	self.object:setacceleration({x=0,y=-10,z=0})
@@ -168,7 +167,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 		end
 		self.object:setvelocity({x=0,y=self.object:getvelocity().y,z=0})
 		if self.player_anim ~= ANIM_STAND then
-			self.anim = player_get_animations(visual)
+			self.anim = player_get_animations(default_model)
 			self.object:set_animation({x=self.anim.stand_START,y=self.anim.stand_END}, animation_speed_mod, animation_blend)
 			self.player_anim = ANIM_STAND
 		end
@@ -187,7 +186,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 			--self.object:setacceleration(self.direction)
 		end
 		if self.player_anim ~= ANIM_WALK then
-			self.anim = player_get_animations(visual)
+			self.anim = player_get_animations(default_model)
 			self.object:set_animation({x=self.anim.walk_START,y=self.anim.walk_END}, animation_speed_mod, animation_blend)
 			self.player_anim = ANIM_WALK
 		end
@@ -242,7 +241,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 			if object:is_player() then
 				if object:get_player_name() == self.attacker then
 					if self.player_anim ~= ANIM_WALK then
-						self.anim = player_get_animations(visual)
+						self.anim = player_get_animations(default_model)
 						self.object:set_animation({x=self.anim.walk_START,y=self.anim.walk_END}, animation_speed_mod, animation_blend)
 						self.player_anim = ANIM_WALK
 					end
@@ -294,7 +293,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 	--WANDERING CONSTANTLY AT NIGHT
 	if self.state == 4 then
 		if self.player_anim ~= ANIM_WALK then
-			self.anim = player_get_animations(visual)
+			self.anim = player_get_animations(default_model)
 			self.object:set_animation({x=self.anim.walk_START,y=self.anim.walk_END}, animation_speed_mod, animation_blend)
 			self.player_anim = ANIM_WALK
 		end
@@ -370,7 +369,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 			self.direction = {x = math.sin(self.yaw)*-1, y = -10, z = math.cos(self.yaw)}
 		end
 		if self.player_anim ~= ANIM_WALK then
-			self.anim = player_get_animations(visual)
+			self.anim = player_get_animations(default_model)
 			self.object:set_animation({x=self.anim.walk_START,y=self.anim.walk_END}, animation_speed_mod, animation_blend)
 			self.player_anim = ANIM_WALK
 		end
