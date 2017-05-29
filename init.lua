@@ -1,16 +1,16 @@
 -- NPC max walk speed
-walk_limit = 2
+local walk_limit = 2
 
 -- Player animation speed
-animation_speed = 30
+local animation_speed = 30
 
 -- Player animation blending
 -- Note: This is currently broken due to a bug in Irrlicht, leave at 0
-animation_blend = 0
+local animation_blend = 0
 
 -- Default player appearance
-default_model = "character.x"
-available_npc_textures = {
+local default_model = "character.x"
+local available_npc_textures = {
 	texture_1 = {"jordan4ibanez.png", },
 	texture_2 = {"zombie.png", },
 	texture_3 = {"celeron55.png", },
@@ -19,7 +19,7 @@ available_npc_textures = {
 
 
 -- Frame ranges for each player model
-function player_get_animations(model)
+local function player_get_animations(model)
 	if model == "character.x" then
 		return {
 		stand_START = 0,
@@ -51,7 +51,7 @@ local ANIM_MINE = 6
 function player_update_visuals(self)
 	--local name = get_player_name()
 
-	visual = default_model
+	local visual = default_model
 	player_anim = 0 -- Animation will be set further below immediately
 	--player_sneak[name] = false
 	prop = {
