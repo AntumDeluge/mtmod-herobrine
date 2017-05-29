@@ -94,7 +94,7 @@ end
 NPC_ENTITY.on_punch = function(self, puncher)
 	for  _,object in ipairs(minetest.env:get_objects_inside_radius(self.object:getpos(), 5)) do
 		if not object:is_player() then
-			if object:get_luaentity().name == "npc:npc" then
+			if object:get_luaentity().name == "herobrine:npc" then
 				object:get_luaentity().state = 3
 				object:get_luaentity().attacker = puncher:get_player_name()
 			end
@@ -125,7 +125,7 @@ NPC_ENTITY.on_step = function(self, dtime)
 			print(newz)
 			self.object:setacceleration({x=newx,y=self.object:getacceleration().y,z=newz})
 		elseif not object:is_player() then
-			if object:get_luaentity().name == "npc:npc" then
+			if object:get_luaentity().name == "herobrine:npc" then
 				print("moo")
 			end
 		end
@@ -404,9 +404,9 @@ NPC_ENTITY.on_step = function(self, dtime)
 	end
 end
 
-minetest.register_entity("npc:npc", NPC_ENTITY)
+minetest.register_entity("herobrine:npc", NPC_ENTITY)
 
-minetest.register_node("npc:spawnegg", {
+minetest.register_node("herobrine:spawnegg", {
 	description = "spawnegg",
 	image = "mobspawnegg.png",
 	inventory_image = "mobspawnegg.png",
@@ -424,7 +424,7 @@ minetest.register_node("npc:spawnegg", {
 	on_place = function(itemstack, placer, pointed)
 		pos = pointed.above
 		pos.y = pos.y + 1
-		minetest.env:add_entity(pointed.above,"npc:npc")
+		minetest.env:add_entity(pointed.above,"herobrine:npc")
 	end
 })
 --[[
@@ -484,5 +484,5 @@ npcs.spawning_mobs = {}
 	})
 end
 
-npcs:register_spawn("npc:npc", {"default:dirt_with_grass"}, 16, -1, 500, 10, 31000)
+npcs:register_spawn("herobrine:npc", {"default:dirt_with_grass"}, 16, -1, 500, 10, 31000)
 ]]--
