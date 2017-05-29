@@ -56,7 +56,6 @@ function player_update_visuals(self)
 	--player_sneak[name] = false
 	prop = {
 		mesh = default_model,
-		textures = default_textures,
 		textures = available_npc_textures["texture_"..math.random(1,4)],
 		visual_size = {x=1, y=1},
 	}
